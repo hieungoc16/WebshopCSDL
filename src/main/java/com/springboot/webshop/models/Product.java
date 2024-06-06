@@ -112,4 +112,12 @@ public class Product {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
 }

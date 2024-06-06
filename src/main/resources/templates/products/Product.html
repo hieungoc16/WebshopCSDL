@@ -17,6 +17,7 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Number</th>
             <th>Brand</th>
             <th>Category</th>
             <th>Price</th>
@@ -29,6 +30,7 @@
         <tr th:each="product : ${products}">
             <td th:text="${product.id}"></td>
             <td th:text="${product.name}"></td>
+            <td th:text="${product.number}"></td>
             <td th:text="${product.brand.brand_name}"></td>
             <td th:text="${product.category.category_name}"></td>
             <td th:text="@{'$' + ${product.price}}"></td>

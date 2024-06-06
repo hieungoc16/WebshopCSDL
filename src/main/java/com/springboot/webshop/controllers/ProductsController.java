@@ -4,18 +4,13 @@ package com.springboot.webshop.controllers;
 import com.springboot.webshop.models.Brand;
 import com.springboot.webshop.models.Category;
 import com.springboot.webshop.models.Product;
-import com.springboot.webshop.models.ProductDto;
 import com.springboot.webshop.repositories.BrandsRepository;
 import com.springboot.webshop.repositories.CategoriesRepository;
 import com.springboot.webshop.repositories.ProductsRepository;
 import com.springboot.webshop.services.ProductService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,7 +19,6 @@ import java.io.InputStream;
 import java.nio.file.*;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/products")
@@ -42,12 +36,11 @@ public class ProductsController {
     public String showProductList(Model model) {
         List<Product> products = productService.findEnableProduct();
         model.addAttribute("products", products);
-        return "products/index";
+        return "products/product";
     }
 
     @GetMapping("/create")
     public String showCreateForm(Model model) {
-        ProductDto productDto = new ProductDto();
         List<Brand> brandList = bra.findAll();
         List<Category> categoryList = cate.findAll();
         model.addAttribute("categoryList", categoryList);
@@ -59,10 +52,11 @@ public class ProductsController {
     public String createProduct(
             Model model,
             @RequestParam("name") String name,
+            @RequestParam("number") String number,
             @RequestParam("brandid") String brandId,
             @RequestParam("categoryid") String categoryId,
             @RequestParam("description") String description,
-            @RequestParam("price") int price,
+            @RequestParam("price") double price,
             @RequestParam("imageFile") MultipartFile imageFile
     ){
 
@@ -88,17 +82,39 @@ public class ProductsController {
         Brand brand = this.bra.findById(brandId).get();
         Category category = this.cate.findById(categoryId).get();
         Product product = new Product();
-        String id = "P001";
+
+        int maxIdNumber = 0;
+        List<Product> products = productService.findEnableProduct();
+        // Tìm giá trị lớn nhất của sản phẩm hiện có
+        for (Product productCurrent : products) {
+            String productId = productCurrent.getId(); // Ví dụ: "P001", "P002",...
+            String numberPart = productId.substring(1); // Bỏ ký tự 'P' ở đầu
+
+            try {
+                int currentIdNumber = Integer.parseInt(numberPart);
+                if (currentIdNumber > maxIdNumber) {
+                    maxIdNumber = currentIdNumber;
+                }
+            } catch (NumberFormatException e) {
+                // Xử lý ngoại lệ nếu số không hợp lệ
+                // Có thể bỏ qua sản phẩm có ID không hợp lệ hoặc đưa ra thông báo lỗi
+                System.err.println("Invalid product ID format: " + productId);
+            }
+        }
+
+        // Tạo ID mới
+        int newIdNumber = maxIdNumber + 1;
+        String id = "P" + newIdNumber;
 
         product.setId(id);
         product.setName(name);
+        product.setNumber(number);
         product.setBrand(brand);
         product.setCategory(category);
         product.setPrice(price);
         product.setDescription(description);
         product.setCreatedAt(createdAt);
         product.setImageFileName(storedFileName);
-
         repo.save(product);
 
         return "redirect:/products";
@@ -107,28 +123,15 @@ public class ProductsController {
     @GetMapping("/edit")
     public String showEditPage(
             Model model,
-            @RequestParam String id
+            @RequestParam("id") String id
     ) {
         try{
             Product product = repo.findById(id).get();
+            List<Brand> brandList = bra.findAll();
+            List<Category> categoryList = cate.findAll();
+            model.addAttribute("brandList", brandList);
+            model.addAttribute("categoryList", categoryList);
             model.addAttribute("product", product);
-            Optional<Brand> brand = bra.findById(product.getBrand().getBrand_id());
-           // model.addAttribute("brand", brand);
-           // model.addAttribute("category", category);
-
-            ProductDto productDto = new ProductDto();
-            productDto.setName(product.getName());
-            productDto.setBrand(product.getBrand());
-            productDto.setPrice(product.getPrice());
-           // productDto.setCategory(product.getCategory());
-            productDto.setDescription(product.getDescription());
-
-            model.addAttribute("productDto", productDto);
-
-            ProductDto brandDto = new ProductDto();
-            productDto.setBrand(product.getBrand());
-            model.addAttribute("brandDto", productDto);
-
         }
         catch (Exception ex){
             System.out.println("Exception: " + ex.getMessage());
@@ -140,20 +143,21 @@ public class ProductsController {
     @PostMapping("/edit")
     public String updateProduct(
             Model model,
-            @RequestParam String id,
-            @Valid @ModelAttribute ProductDto productDto,
-            BindingResult result
+            @RequestParam("id") String id,
+            @RequestParam("name") String name,
+            @RequestParam("number") String number,
+            @RequestParam("brandid") String brandId,
+            @RequestParam("categoryid") String categoryId,
+            @RequestParam("description") String description,
+            @RequestParam("price") double price,
+            @RequestParam("imageFile") MultipartFile imageFile
             ){
 
         try {
             Product product = repo.findById(id).get();
             model.addAttribute("product", product);
 
-            if (result.hasErrors()){
-            return "products/EditProduct";
-            }
-
-            if (!productDto.getImageFile().isEmpty()) {
+            if (!imageFile.isEmpty()) {
                 String uploadDir = "public/images/";
                 Path oldImagePath = Paths.get(uploadDir + product.getImageFileName());
 
@@ -163,7 +167,7 @@ public class ProductsController {
                     System.out.println("Exception: " + ex.getMessage());
                 }
                 //Save image file
-                MultipartFile image = productDto.getImageFile();
+                MultipartFile image = imageFile;
                 Date createdAt = new Date();
                 String storageFileName = image.getOriginalFilename();
                 try(InputStream inputStream = image.getInputStream()){
@@ -173,11 +177,16 @@ public class ProductsController {
                 product.setImageFileName(storageFileName);
                 }
 
-            product.setName(productDto.getName());
-            product.setBrand(productDto.getBrand());
-            product.setCategory(productDto.getCategory());
-            product.setPrice(productDto.getPrice());
-            product.setDescription(productDto.getDescription());
+
+            Brand brand = this.bra.findById(brandId).get();
+            Category category = this.cate.findById(categoryId).get();
+
+            product.setName(name);
+            product.setNumber(number);
+            product.setBrand(brand);
+            product.setCategory(category);
+            product.setPrice(price);
+            product.setDescription(description);
 
             repo.save(product);
         }
