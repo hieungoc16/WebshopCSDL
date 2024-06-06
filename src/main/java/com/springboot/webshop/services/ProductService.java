@@ -27,12 +27,12 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Void enableProduct(String id){
+    public Void enableProduct(Integer id){
         return productsRepository.updateStatus(id, 1);
     }
 
     @Override
-    public Void disableProduct(String id){
+    public Void disableProduct(Integer id){
         return productsRepository.updateStatus(id, 0);
     }
 

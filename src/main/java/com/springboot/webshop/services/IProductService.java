@@ -11,7 +11,7 @@ public interface IProductService {
 
     List<Product> findDisableProduct();
 
-    Void enableProduct(String id);
+    Void enableProduct(Integer id);
 
-    Void disableProduct(String id);
+    Void disableProduct(Integer id);
 }

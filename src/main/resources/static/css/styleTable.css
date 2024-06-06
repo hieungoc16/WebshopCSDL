@@ -1,0 +1,33 @@
+.table-spacing th {
+    padding-left: 20px; /* Khoảng cách bên trái */
+    padding-right: 20px; /* Khoảng cách bên phải */
+}
+.table-spacing{
+    margin-bottom: 20px; /* Đổi giá trị này theo nhu cầu của bạn */
+}
+
+
+.table-spacing input[type="text"] {
+    width: 100%; /* Đảm bảo các thành phần chiếm toàn bộ chiều rộng của ô */
+    padding: 4px; /* Khoảng cách bên trong của các thành phần */
+    box-sizing: border-box; /* Đảm bảo padding không làm thay đổi kích thước của các thành phần */
+}
+
+.input-group {  
+    display: flex;
+    align-items: center;
+}
+.input-group img {
+    margin-right: 2px; /* Khoảng cách giữa icon và thành phần */
+}
+
+.table-spacing-filter th {
+    padding-left: 0.1px; /* Khoảng cách bên trái */
+    padding-right: 0.1px; /* Khoảng cách bên phải */
+}
+
+.input-group select {
+    width: 200px; /* Độ dài cố định cho trường select */
+    padding: 5px; /* Khoảng cách bên trong của các thành phần */
+    box-sizing: border-box; /* Đảm bảo padding không làm thay đổi kích thước của các thành phần */
+}

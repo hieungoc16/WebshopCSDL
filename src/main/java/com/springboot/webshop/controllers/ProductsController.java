@@ -83,30 +83,6 @@ public class ProductsController {
         Category category = this.cate.findById(categoryId).get();
         Product product = new Product();
 
-        int maxIdNumber = 0;
-        List<Product> products = productService.findEnableProduct();
-        // Tìm giá trị lớn nhất của sản phẩm hiện có
-        for (Product productCurrent : products) {
-            String productId = productCurrent.getId(); // Ví dụ: "P001", "P002",...
-            String numberPart = productId.substring(1); // Bỏ ký tự 'P' ở đầu
-
-            try {
-                int currentIdNumber = Integer.parseInt(numberPart);
-                if (currentIdNumber > maxIdNumber) {
-                    maxIdNumber = currentIdNumber;
-                }
-            } catch (NumberFormatException e) {
-                // Xử lý ngoại lệ nếu số không hợp lệ
-                // Có thể bỏ qua sản phẩm có ID không hợp lệ hoặc đưa ra thông báo lỗi
-                System.err.println("Invalid product ID format: " + productId);
-            }
-        }
-
-        // Tạo ID mới
-        int newIdNumber = maxIdNumber + 1;
-        String id = "P" + newIdNumber;
-
-        product.setId(id);
         product.setName(name);
         product.setNumber(number);
         product.setBrand(brand);
@@ -123,7 +99,7 @@ public class ProductsController {
     @GetMapping("/edit")
     public String showEditPage(
             Model model,
-            @RequestParam("id") String id
+            @RequestParam("id") Integer id
     ) {
         try{
             Product product = repo.findById(id).get();
@@ -143,7 +119,7 @@ public class ProductsController {
     @PostMapping("/edit")
     public String updateProduct(
             Model model,
-            @RequestParam("id") String id,
+            @RequestParam("id") int id,
             @RequestParam("name") String name,
             @RequestParam("number") String number,
             @RequestParam("brandid") String brandId,
@@ -198,7 +174,7 @@ public class ProductsController {
 
     @GetMapping("/delete")
     public String deleteProduct(
-            @RequestParam String id
+            @RequestParam int id
     ){
         try{
             productService.disableProduct(id);
@@ -218,7 +194,7 @@ public class ProductsController {
 
     @GetMapping("/restore")
     public String restoreProduct(
-            @RequestParam String id
+            @RequestParam int id
     ){
         try{
             productService.enableProduct(id);
@@ -227,5 +203,25 @@ public class ProductsController {
             System.out.println("Exception: " + ex.getMessage());
         }
         return "redirect:/products";
+    }
+
+    @GetMapping("/detail")
+    public String showProductDetail(
+            Model model,
+            @RequestParam("id") int id
+    ){
+        try{
+            Product product = repo.findById(id).get();
+            List<Brand> brandList = bra.findAll();
+            List<Category> categoryList = cate.findAll();
+            model.addAttribute("brandList", brandList);
+            model.addAttribute("categoryList", categoryList);
+            model.addAttribute("product", product);
+        }
+        catch (Exception ex){
+            System.out.println("Exception: " + ex.getMessage());
+            return "redirect:/products";
+        }
+        return "products/ProductDetail";
     }
 }

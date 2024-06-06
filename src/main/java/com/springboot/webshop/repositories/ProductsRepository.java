@@ -10,14 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-public interface ProductsRepository extends JpaRepository<Product, String> {
+public interface ProductsRepository extends JpaRepository<Product, Integer> {
     @Query("SELECT product FROM Product product WHERE (product.status = ?1)" + "ORDER BY product.id ASC")
     public List<Product> findStatusProduct(Integer product_status);
 
     @Transactional
     @Modifying
     @Query("UPDATE Product product SET product.status = ?2 WHERE product.id = ?1")
-    public Void updateStatus(String product_id, Integer product_status);
+    public Void updateStatus(int product_id, Integer product_status);
 
 }
 

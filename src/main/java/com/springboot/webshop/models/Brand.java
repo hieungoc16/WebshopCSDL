@@ -13,7 +13,7 @@ import jakarta.validation.constraints.Size;
 public class Brand {
     @Id
     @Column(name = "brand_id")
-    private String brand_id;
+    private int brand_id;
 
     @Column(name = "brand_name")
     private String brand_name;
@@ -21,11 +21,11 @@ public class Brand {
     @Column(name = "brand_address")
     private String brand_address;
 
-    public String getBrand_id() {
+    public int getBrand_id() {
         return brand_id;
     }
 
-    public void setBrand_id(String brand_id) {
+    public void setBrand_id(int brand_id) {
         this.brand_id = brand_id;
     }
 

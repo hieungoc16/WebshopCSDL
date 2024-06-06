@@ -1,51 +1,66 @@
-/* Basic form container styling */
-.container {
-    perspective: 1000px;
+.sticky-header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1000;
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.form-container {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.2s;
+.sticky-header button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    cursor: pointer;
 }
 
-.form-container:hover {
-    transform: rotateY(10deg) rotateX(5deg);
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
-.form-container:active {
-    transform: rotateY(0deg) rotateX(0deg);
+main {
+    height: 2000px; /* Chiều cao lớn để tạo thanh cuộn */
+    padding: 20px;
 }
 
-.form-container .row {
-    margin-bottom: 15px;
+.frametable {
+    width: 100%;
+    border: 2px solid #ccc;
+    border-collapse: collapse;
+}
+.frametable th, .frametable td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+.product {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.product-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: calc(33.333% - 20px); /* 3 items per row */
+    box-sizing: border-box;
+}
+.pagination {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+.pagination button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+    cursor: pointer;
 }
 
-.form-container label {
-    font-weight: bold;
-}
-
-.form-container button {
-    transition: background 0.3s, transform 0.3s;
-}
-
-.form-container button:hover {
-    background: #0056b3;
-    transform: scale(1.05);
-}
-
-.form-container button:active {
-    transform: scale(1);
-}
-
-.form-container img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    max-width: 100%;
-    height: auto;
-}

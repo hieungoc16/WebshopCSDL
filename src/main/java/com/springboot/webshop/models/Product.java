@@ -10,8 +10,8 @@ import jakarta.validation.constraints.NotEmpty;
 public class Product {
     @Column(name = "product_id")
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @Column(name = "product_name")
     private String name;
@@ -38,14 +38,11 @@ public class Product {
     @Column(name = "product_number")
     private String number;
 
-    public Product() {
-    }
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
