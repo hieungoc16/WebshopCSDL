@@ -8,27 +8,12 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="text-center my-4">Products</h1>
-<table>
-    <tr>
-    <th><a class="btn btn-primary" href="/products">Product</a></th>
-    <th><a class="btn btn-primary" href="/products/disableproduct">Disable Product</a></th>
-    </tr>
-</table>
+    <h1 class="text-center my-4">Disable Products</h1>
 
+    <a class="btn btn-primary" href="/products">Product</a>
+    <a class="btn btn-primary" href="/products/create">Create Product</a>
+    <a class="btn btn-primary" href="/products/disableproduct">Disable Product</a>
 
-<table>
-    <tr>
-        <th>
-            <a  href="/products/create" title="Create Product">
-                <img src="/../../../../public/images/icons/create_product_icon.png" alt="Create Product" style="width: 35px; height: 35px;">
-            </a>
-        </th>
-        <th><a href="/products/create" title="Filter">
-            <img src="/../../../../public/images/icons/filter_icon.png" alt="Create Product" style="width: 35px; height: 35px;"></a></th>
-        <th><a class="btn btn-primary" href="/products/create">Search</a></th>
-    </tr>
-</table>
     <table class="table">
         <thead>
         <tr>
@@ -52,12 +37,11 @@
             <td th:text="${product.category.category_name}"></td>
             <td th:text="@{'$' + ${product.price}}"></td>
             <td>
-                <img th:src="@{'/images/product_images/' + ${product.imageFileName}}" alt="..." width="80" height="100">
+                <img th:src="@{'/images/' + ${product.imageFileName}}" alt="..." width="80" height="100">
             </td>
             <td th:text="${product.createdAt.toString().substring(0, 10)}"></td>
             <td style="white-space: nowrap">
-                <a class="btn btn-primary btn-sm" th:href="@{/products/edit(id=${product.id})}">Edit</a>
-                <a class="btn btn-danger btn-sm" th:href="@{/products/delete(id=${product.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+                <a class="btn btn-danger btn-sm" th:href="@{/products/restore(id=${product.id})}" onclick="return confirm('Are you sure?')">Restore</a>
 
             </td>
         </tr>

@@ -55,7 +55,7 @@
                             <option th:each="brand : ${brandList}"
                                     th:value="${brand.brand_id}"
                                     th:text="${brand.brand_name}"
-                                    th:selected="${brand.brand_id == product.brand?.brand_id}></option>
+                                    th:selected="${product.brand.brand_id == brand.brand_id}"></option>
                         </select>
                     </div>
                 </div>
@@ -65,7 +65,11 @@
                     <label class="col-sm-4 col-form-label">Category</label>
                     <div class="col-sm-8">
                         <select class="form-select" id="categorySelect" name="categoryid">
-                            <option th:each="category : ${categoryList}" th:value="${category.category_id}" th:text="${category.category_name}"></option>
+                            <option th:each="category : ${categoryList}"
+                                    th:value="${category.category_id}"
+                                    th:text="${category.category_name}"
+                                    th:selected="${product.category.category_id == category.category_id}">
+                            </option>
                         </select>
                     </div>
                 </div>

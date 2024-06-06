@@ -8,4 +8,10 @@ public interface IProductService {
     List<Product> findAllProduct();
 
     List<Product> findEnableProduct();
+
+    List<Product> findDisableProduct();
+
+    Void enableProduct(String id);
+
+    Void disableProduct(String id);
 }

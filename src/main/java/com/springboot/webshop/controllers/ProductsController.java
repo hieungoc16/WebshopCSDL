@@ -65,7 +65,7 @@ public class ProductsController {
         Date createdAt = new Date();
         String storedFileName = image.getOriginalFilename();
         try {
-            String uploadDir = "public/images/";
+            String uploadDir = "public/images/product_images";
             Path uploadPath = Paths.get(uploadDir);
 
             if (!Files.exists(uploadPath)){
@@ -158,7 +158,7 @@ public class ProductsController {
             model.addAttribute("product", product);
 
             if (!imageFile.isEmpty()) {
-                String uploadDir = "public/images/";
+                String uploadDir = "public/images/product_images/";
                 Path oldImagePath = Paths.get(uploadDir + product.getImageFileName());
 
                 try {
@@ -201,17 +201,7 @@ public class ProductsController {
             @RequestParam String id
     ){
         try{
-            Product product = repo.findById(id).get();
-
-            Path imagePath = Paths.get("public/images/" + product.getImageFileName());
-            try{
-                Files.delete(imagePath);
-            }
-            catch (Exception ex) {
-                System.out.println("Exception: " + ex.getMessage());
-
-            }
-            repo.delete(product);
+            productService.disableProduct(id);
         }
         catch (Exception ex){
             System.out.println("Exception: " + ex.getMessage());
@@ -219,4 +209,23 @@ public class ProductsController {
         return "redirect:/products";
     }
 
+    @GetMapping({"/disableproduct"})
+    public String showDisableProductList(Model model) {
+        List<Product> products = productService.findDisableProduct();
+        model.addAttribute("products", products);
+        return "products/disableproduct";
+    }
+
+    @GetMapping("/restore")
+    public String restoreProduct(
+            @RequestParam String id
+    ){
+        try{
+            productService.enableProduct(id);
+        }
+        catch(Exception ex){
+            System.out.println("Exception: " + ex.getMessage());
+        }
+        return "redirect:/products";
+    }
 }

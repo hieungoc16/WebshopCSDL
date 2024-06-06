@@ -21,4 +21,19 @@ public class ProductService implements IProductService {
         return productsRepository.findStatusProduct(1);
     }
 
+    @Override
+    public List<Product> findDisableProduct(){
+        return productsRepository.findStatusProduct(0);
+    }
+
+    @Override
+    public Void enableProduct(String id){
+        return productsRepository.updateStatus(id, 1);
+    }
+
+    @Override
+    public Void disableProduct(String id){
+        return productsRepository.updateStatus(id, 0);
+    }
+
 }
