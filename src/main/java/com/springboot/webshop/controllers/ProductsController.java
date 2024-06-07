@@ -81,8 +81,8 @@ public class ProductsController {
 
         Brand brand = this.bra.findById(brandId).get();
         Category category = this.cate.findById(categoryId).get();
-        Product product = new Product();
 
+        Product product = new Product();
         product.setName(name);
         product.setNumber(number);
         product.setBrand(brand);
@@ -185,25 +185,6 @@ public class ProductsController {
         return "redirect:/products";
     }
 
-    @GetMapping({"/disableproduct"})
-    public String showDisableProductList(Model model) {
-        List<Product> products = productService.findDisableProduct();
-        model.addAttribute("products", products);
-        return "products/disableproduct";
-    }
-
-    @GetMapping("/restore")
-    public String restoreProduct(
-            @RequestParam int id
-    ){
-        try{
-            productService.enableProduct(id);
-        }
-        catch(Exception ex){
-            System.out.println("Exception: " + ex.getMessage());
-        }
-        return "redirect:/products";
-    }
 
     @GetMapping("/detail")
     public String showProductDetail(

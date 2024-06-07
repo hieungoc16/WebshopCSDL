@@ -8,9 +8,10 @@ import jakarta.validation.constraints.NotEmpty;
 @Entity
 @Table(name = "product")
 public class Product {
-    @Column(name = "product_id")
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "product_id")
     private int id;
 
     @Column(name = "product_name")
