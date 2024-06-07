@@ -13,5 +13,9 @@ public class Feedback {
     @Id
     private int feedback_id;
 
+    @Column(name = "feedback_date")
+    private String feedback;
+
+
 
 }
