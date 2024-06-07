@@ -1,66 +1,61 @@
-.sticky-header {
-    position: sticky;
-    top: 0;
-    background-color: white;
-    z-index: 1000;
-    width: 100%;
-    padding: 10px;
-    border: 2px solid #ccc;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.sticky-header button {
-    padding: 10px 20px;
-    margin: 0 5px;
-    border: 1px solid #ccc;
-    background-color: #f0f0f0;
-    cursor: pointer;
-}
-
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
+    font-family: Arial, sans-serif;
 }
 
-main {
-    height: 2000px; /* Chiều cao lớn để tạo thanh cuộn */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
     padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.frametable {
-    width: 100%;
-    border: 2px solid #ccc;
-    border-collapse: collapse;
-}
-.frametable th, .frametable td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
-}
-.product {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-.product-item {
-    border: 1px solid #ccc;
-    padding: 10px;
-    width: calc(33.333% - 20px); /* 3 items per row */
-    box-sizing: border-box;
-}
-.pagination {
-    margin: 20px 0;
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-}
-.pagination button {
-    padding: 10px;
-    border: 1px solid #ccc;
-    background-color: #f8f8f8;
-    cursor: pointer;
+h2 {
+    color: #343a40;
 }
 
+.form-control {
+    border-radius: 5px;
+}
+
+.form-select {
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+    border-radius: 25px; /* Bo tròn góc */
+    padding: 10px 20px; /* Tăng kích thước nút */
+    font-size: 16px; /* Tăng kích thước chữ */
+    transition: all 0.3s ease; /* Thêm hiệu ứng chuyển động */
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2); /* Thêm đổ bóng */
+}
+
+.btn-outline-secondary {
+    border-radius: 25px; /* Bo tròn góc */
+    transition: all 0.3s ease; /* Thêm hiệu ứng chuyển động */
+    border-color: #6c757d;
+    color: #6c757d;
+}
+
+.btn-primary:hover, .btn-outline-secondary:hover {
+    opacity: 0.9;
+}
+
+.img-thumbnail {
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    box-shadow: 0 6px 8px rgba(0, 123, 255, 0.4); /* Thay đổi đổ bóng khi hover */
+    transform: translateY(-2px); /* Thêm hiệu ứng nhấp nháy */
+}
