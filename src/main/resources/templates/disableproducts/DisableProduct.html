@@ -13,14 +13,14 @@
 <div class="container">
     <div class="sticky-header mb-4">
         <a class="btn btn-primary me-2" href="/">Admin</a>
-        <a class="btn btn-primary me-2" href="/products">Products</a>
+        <a class="btn btn-primary me-2" href="/admin/products">Products</a>
         <a class="btn btn-primary me-2" href="/products/disableproduct">Users</a>
         <a class="btn btn-primary me-2" href="/products/disableproduct">Brands</a>
         <a class="btn btn-primary me-2" href="/products/disableproduct">Categories</a>
         <a class="btn btn-primary me-2" href="/products/disableproduct">Orders</a>
         <a class="btn btn-primary me-2" href="/products/disableproduct">Payments</a>
         <a class="btn btn-primary me-2" href="/products/disableproduct">Vouchers</a>
-        <a class="btn btn-primary" href="/disableproducts/">Disable Products</a>
+        <a class="btn btn-primary" href="/admin/disableproducts">Disable Products</a>
     </div>
 
     <h1 class="text-center my-4">Disable Products</h1>
@@ -67,7 +67,7 @@
             </td>
             <td th:text="${product.createdAt.toString().substring(0, 10)}"></td>
             <td class="text-nowrap">
-                <a class="btn btn-primary btn-sm me" th:href="@{/disableproducts/restore(id=${product.id})}">Restore</a>
+                <a class="btn btn-primary btn-sm me" th:href="@{/templates/disableproducts/restore(id=${product.id})}">Restore</a>
             </td>
         </tr>
         </tbody>

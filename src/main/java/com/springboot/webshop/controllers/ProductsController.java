@@ -3,10 +3,12 @@ package com.springboot.webshop.controllers;
 
 import com.springboot.webshop.models.Brand;
 import com.springboot.webshop.models.Category;
+import com.springboot.webshop.models.Feedback;
 import com.springboot.webshop.models.Product;
 import com.springboot.webshop.repositories.BrandsRepository;
 import com.springboot.webshop.repositories.CategoriesRepository;
 import com.springboot.webshop.repositories.ProductsRepository;
+import com.springboot.webshop.services.FeedbackService;
 import com.springboot.webshop.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,28 +23,25 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-@RequestMapping("/products")
+@RequestMapping("/admin/products")
 public class ProductsController {
 
     @Autowired
     private ProductsRepository repo;
     @Autowired
-    private CategoriesRepository cate;
+    private CategoriesRepository categoriesRepository;
     @Autowired
-    private BrandsRepository bra;
+    private BrandsRepository brandsRepository;
     @Autowired
     private ProductService productService;
-    @GetMapping({"", "/"})
-    public String showProductList(Model model) {
-        List<Product> products = productService.findEnableProduct();
-        model.addAttribute("products", products);
-        return "products/product";
-    }
+    @Autowired
+    private FeedbackService feedbackService;
+
 
     @GetMapping("/create")
     public String showCreateForm(Model model) {
-        List<Brand> brandList = bra.findAll();
-        List<Category> categoryList = cate.findAll();
+        List<Brand> brandList = brandsRepository.findAll();
+        List<Category> categoryList = categoriesRepository.findAll();
         model.addAttribute("categoryList", categoryList);
         model.addAttribute("brandList", brandList);
         return "products/CreateProduct";
@@ -79,8 +78,8 @@ public class ProductsController {
         }
 
 
-        Brand brand = this.bra.findById(brandId).get();
-        Category category = this.cate.findById(categoryId).get();
+        Brand brand = this.brandsRepository.findById(brandId).get();
+        Category category = this.categoriesRepository.findById(categoryId).get();
 
         Product product = new Product();
         product.setName(name);
@@ -103,8 +102,8 @@ public class ProductsController {
     ) {
         try{
             Product product = repo.findById(id).get();
-            List<Brand> brandList = bra.findAll();
-            List<Category> categoryList = cate.findAll();
+            List<Brand> brandList = brandsRepository.findAll();
+            List<Category> categoryList = categoriesRepository.findAll();
             model.addAttribute("brandList", brandList);
             model.addAttribute("categoryList", categoryList);
             model.addAttribute("product", product);
@@ -154,8 +153,8 @@ public class ProductsController {
                 }
 
 
-            Brand brand = this.bra.findById(brandId).get();
-            Category category = this.cate.findById(categoryId).get();
+            Brand brand = this.brandsRepository.findById(brandId).get();
+            Category category = this.categoriesRepository.findById(categoryId).get();
 
             product.setName(name);
             product.setNumber(number);
@@ -192,11 +191,10 @@ public class ProductsController {
             @RequestParam("id") int id
     ){
         try{
+            // Lấy theo product ID
             Product product = repo.findById(id).get();
-            List<Brand> brandList = bra.findAll();
-            List<Category> categoryList = cate.findAll();
-            model.addAttribute("brandList", brandList);
-            model.addAttribute("categoryList", categoryList);
+            List<Feedback> feedbackList = feedbackService.findFeedbacksByProductId(id);
+            model.addAttribute("feedbackList", feedbackList);
             model.addAttribute("product", product);
         }
         catch (Exception ex){
@@ -205,4 +203,20 @@ public class ProductsController {
         }
         return "products/ProductDetail";
     }
+
+    @GetMapping("/search")
+    public String searchProduct(
+            Model model,
+            @RequestParam("name") String name
+    ){
+     try {
+            List<Product> products = productService.findProductsByName(name);
+            model.addAttribute("products", products);
+     } catch (Exception e) {
+         System.out.println("Exception: " + e.getMessage());
+         return "redirect:/products";
+     }
+     return "products/searchProduct";
+    }
+
 }

@@ -4,6 +4,7 @@ import com.springboot.webshop.models.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,9 @@ public interface ProductsRepository extends JpaRepository<Product, Integer> {
     @Query("UPDATE Product product SET product.status = ?2 WHERE product.id = ?1")
     public Void updateStatus(int product_id, Integer product_status);
 
+
+    @Query("SELECT product FROM Product product WHERE (product.name LIKE %:name%)" + "ORDER BY product.id ASC")
+    public List<Product> findByName(@Param("name") String name);
 }
 
 
