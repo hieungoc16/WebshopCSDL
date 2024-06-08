@@ -1,100 +1,124 @@
 package com.springboot.webshop.models;
 
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
 public class User {
-    @Column(name = "users_id")
+
     @Id
-    private int user_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private Integer id;
 
-    @Column(name = "users_name")
-    private String users_name;
+    @Column(name = "username")
+    private String username;
 
-    @Column(name = "users_username")
-    private String users_username;
+    @Column(name = "password")
+    private String password;
 
-    @Column(name = "users_mail")
-    private String users_mail;
+    @Column(name = "enabled")
+    private Boolean enabled;
 
-    @Column(name = "users_phone")
-    private String users_phone;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "users_password")
-    private String users_password;
+    @Column(name = "dob")
+    private Date dob;
 
-    @Column(name = "users_address")
-    private String users_address;
+    @Column(name = "address")
+    private String address;
 
-    @Column(name = "users_dob")
-    private String users_dob;
+    @Column(name = "email")
+    private String email;
 
-    public int getUser_id() {
-        return user_id;
+    @Column(name = "phone")
+    private String phone;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<UserRole> userRoles;
+
+    // Getters and setters
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getUsers_name() {
-        return users_name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUsers_name(String users_name) {
-        this.users_name = users_name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getUsers_username() {
-        return users_username;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUsers_username(String users_username) {
-        this.users_username = users_username;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getUsers_mail() {
-        return users_mail;
+    public Boolean isEnabled() {
+        return enabled;
     }
 
-    public void setUsers_mail(String users_mail) {
-        this.users_mail = users_mail;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
-    public String getUsers_phone() {
-        return users_phone;
+    public String getName() {
+        return name;
     }
 
-    public void setUsers_phone(String users_phone) {
-        this.users_phone = users_phone;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getUsers_password() {
-        return users_password;
+    public Date getDob() {
+        return dob;
     }
 
-    public void setUsers_password(String users_password) {
-        this.users_password = users_password;
+    public void setDob(Date dob) {
+        this.dob = dob;
     }
 
-    public String getUsers_address() {
-        return users_address;
+    public String getAddress() {
+        return address;
     }
 
-    public void setUsers_address(String users_address) {
-        this.users_address = users_address;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getUsers_dob() {
-        return users_dob;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsers_dob(String users_dob) {
-        this.users_dob = users_dob;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(Set<UserRole> userRoles) {
+        this.userRoles = userRoles;
     }
 }
