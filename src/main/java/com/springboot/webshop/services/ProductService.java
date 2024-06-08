@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ProductService implements IProductService {
     @Autowired
@@ -34,6 +36,11 @@ public class ProductService implements IProductService {
     @Override
     public Void disableProduct(Integer id){
         return productsRepository.updateStatus(id, 0);
+    }
+
+    @Override
+    public List<Product> findProductsByName(String name){
+        return productsRepository.findByName(name);
     }
 
 }
