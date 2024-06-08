@@ -1,6 +1,6 @@
 package com.springboot.webshop.Security;
 
-import com.springboot.webshop.models.User;
+import com.springboot.webshop.models.Users;
 import com.springboot.webshop.models.UserRole;
 import com.springboot.webshop.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,17 +22,17 @@ public class CustomUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.findByUserName(username);
-        if (user == null) {
+        Users users = userService.findByUserName(username);
+        if (users == null) {
             throw new UsernameNotFoundException("The account name is incorrect or does not exist");
         }
 
         Collection<GrantedAuthority> grantedAuthoritySet = new HashSet<>();
-        Set<UserRole> roles = user.getUserRoles();
+        Set<UserRole> roles = users.getUserRoles();
         for (UserRole userRole : roles) {
             grantedAuthoritySet.add(new SimpleGrantedAuthority(userRole.getRole().getName()));
         }
 
-        return new CustomUserDetails(user, grantedAuthoritySet);
+        return new CustomUserDetails(users, grantedAuthoritySet);
     }
 }

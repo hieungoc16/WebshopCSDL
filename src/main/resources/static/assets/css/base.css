@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+:root{
+    --color-bg1:#0773B9;
+    --color-title:#ffffff;
+    --color-desc:#C8C8C8;
+}
+.container{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1140px;
+    width: 100%;
+}
+*{
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Inria Serif',serif;
+}

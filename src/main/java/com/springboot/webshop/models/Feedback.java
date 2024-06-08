@@ -22,7 +22,7 @@ public class Feedback {
 
     @ManyToOne
     @JoinColumn(name = "users_id", referencedColumnName = "users_id")
-    private User users_id;
+    private Users users_id;
 
     public int getFeedback_id() {
         return feedback_id;
@@ -56,11 +56,11 @@ public class Feedback {
         this.product = product;
     }
 
-    public User getUsers_id() {
+    public Users getUsers_id() {
         return users_id;
     }
 
-    public void setUsers_id(User users_id) {
+    public void setUsers_id(Users users_id) {
         this.users_id = users_id;
     }
 }

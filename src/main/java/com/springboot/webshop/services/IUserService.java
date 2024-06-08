@@ -1,7 +1,7 @@
 package com.springboot.webshop.services;
 
-import com.springboot.webshop.models.User;
+import com.springboot.webshop.models.Users;
 
 public interface IUserService {
-    User findByUserName(String username);
+    Users findByUserName(String username);
 }

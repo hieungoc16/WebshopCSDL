@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>web_banhang</title>
+  <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css}"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <link crossorigin="anonymous" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css}"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        referrerpolicy="no-referrer" rel="stylesheet"/>
+
+  <link rel="stylesheet" th:href="@{/assets/css/reset.css}">
+  <link rel="stylesheet" th:href="@{/assets/css/base.css}">
+  <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+</head>
+
+<body>
+<!-- header Tieu de trang -->
+<header class="header">
+  <div class="header-fixed">
+    <div class="container">
+      <div class="inner-wrap">
+        <div class="inner-logo">
+          <a href="#">
+            <img src="/assets/images/png-clipart-computer-logo-internet-computer-internet-blue-computer-network-removebg-preview.png"
+                 alt="anh logo">
+            <span>KHH.SHOP</span>
+          </a>
+
+        </div>
+        <div class="inner-menu">
+          <ul>
+            <li>
+              <a href="#" target="_blank">Trang chủ</a>
+            </li>
+            <li>
+              <a href="#" target="_blank">Về chúng tôi</a>
+            </li>
+            <li class="dropdown">
+              <a href="#" target="_black">
+                Sản phẩm
+                <span class="fa-solid fa-angle-down"></span>
+              </a>
+              <div class="dropdown-content">
+                <a href="#">Electronics</a>
+                <a href="#">Clothing</a>
+                <a href="#">Automofive</a>
+                <a href="#">Beauty</a>
+                <a href="#">Heath</a>
+                <a href="#">Home Appliancess </a>
+              </div>
+            </li>
+            <li>
+              <a href="#" target="_blank">Liên hệ</a>
+            </li>
+          </ul>
+        </div>
+        <div class="inner-soict">
+          <!--Dang ky tkoan-->
+          <div class="float-right">
+            <div class="inner-header">
+              <a class="btn-action-header" title="Tai khoan" data-toggle="modal"
+                 data-target="#login-modal">
+                <i class="fa-regular fa-user"></i>
+              </a>
+              <!-- Modal -->
+              <div class="modal fade " id="login-modal" tabindex="-1"
+                   aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Đăng Nhập</h5>
+                      <button type="button" class="close" data-dismiss="modal"
+                              aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form action=" ">
+                        <div class="row">
+                          <div class="col-12">
+                            <div class="form-group">
+                              <label for="username" class="user_name">
+                                Tài khoản
+                                <span class="required">*</span>
+                              </label>
+                              <div class="input-login">
+                                <input type="text" id="username"
+                                       class="form-control">
+                                <div class="inner-icon">
+                                  <i class="fa-regular fa-user"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <div class="form-group">
+                              <label for="password" class="user_name">
+                                Mật khẩu
+                                <span class="required">*</span>
+                              </label>
+                              <div class="input-pass">
+                                <input type="password" id="password"
+                                       class="form-control">
+                                <div class="inner-icon">
+                                  <i class="fa-solid fa-lock"></i>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                      <button class="inner-button" >
+                        Đăng nhập
+                      </button>
+                    </div>
+                    <div class="inner-desc">
+                      Quên mật khẩu
+                    </div>
+                    </form>
+                    <div class="inner-wrap">
+                      <p class="title"> Bạn chưa có tài khoản?</p>
+                      <p class="desc"> Đăng ký ngay </p>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="float-right">
+            <div class="inner-header">
+              <a class="btn-action-header">
+                <i class="fa-solid fa-bag-shopping"></i>
+              </a>
+            </div>
+          </div>
+          <div class="float-right">
+            <div class="inner-header">
+              <div class="btn-action-header">
+                <i class="fa-regular fa-heart"></i>
+              </div>
+            </div>
+          </div>
+          <div class="float-right">
+            <div class="inner-header">
+              <a class="btn-action-header" title="tìm kiếm">
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+              </a>
+              <!-- <div class="inner-form-search">
+              <form action=" " method="get" autocapitalize="off">
+                  <div class="row">
+                      <div class="col-12">
+                          <div class="form-group">
+                              <input type="text" placeholder="Từ khóa tìm kiếm" class="form-control">
+                          </div>
+                      </div>
+                  </div>
+              </form>
+             </div> -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</header>
+<!-- end header -->
+
+<!-- section-one  -->
+<div class="section-one">
+  <div class="container">
+    <h2 class="inner-title">
+      Sản phẩm bán chạy nhất
+    </h2>
+    <div class="inner-list">
+      <div class="row">
+        <div class="col-xl-3">
+          <div class="inner-box">
+            <div class="inner-images">
+              <img src="/assets/images/dell-xps-15-9530-1.jpg" alt="">
+            </div>
+            <div class="inner-content">
+              <h3 class="inner-title">
+                Dell XPS 9530 15 inch 2023
+
+              </h3>
+              <p class="inner-desc">
+                Tình trạng: New 100%, Fullbox
+
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3">
+          <div class="inner-box">
+            <div class="inner-images">
+              <img src="/assets/images/dell-xps-15-9530-1.jpg" alt="">
+            </div>
+            <div class="inner-content">
+              <h3 class="inner-title">
+                Dell XPS 9530 15 inch 2023
+              </h3>
+              <p class="inner-desc">
+                Tình trạng: New 100%, Fullbox
+
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3">
+          <div class="inner-box">
+            <div class="inner-images">
+              <img src="/assets/images/dell-xps-15-9530-1.jpg" alt="">
+            </div>
+            <div class="inner-content">
+              <h3 class="inner-title">
+                Dell XPS 9530 15 inch 2023
+
+              </h3>
+              <p class="inner-desc">
+                Tình trạng: New 100%, Fullbox
+
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3">
+          <div class="inner-box">
+            <div class="inner-images">
+              <img src="/assets/images/dell-xps-15-9530-1.jpg" alt="">
+            </div>
+            <div class="inner-content">
+              <h3 class="inner-title">
+                Dell XPS 9530 15 inch 2023
+
+              </h3>
+              <p class="inner-desc">
+                Tình trạng: New 100%, Fullbox
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- end section-one -->
+
+<!-- section-three  -->
+<div class="section-three">
+  <div class="container">
+    <div class="inner-head">
+      <h2 class="inner-title">
+        Cung cấp cho bạn đa dạng sản phẩm
+      </h2>
+      <div class="inner-line"></div>
+      <p class="inner-desc">
+        KHH.Shop mang đến cho bạn những sản phẩm tốt nhất với giá cả phải chăng
+      </p>
+    </div>
+    <div class="row menu-grid">
+      <div class="col-sm-3 col-6">
+        <div class="inner-grid__item">
+          <a class="inner-grid__item-images">
+            <img src="/assets/images/phuong-tien-giao-thong.jpg" alt="">
+          </a>
+        </div>
+        <h3 class="inner-grid__item-title">
+          Automotive
+        </h3>
+      </div>
+      <div class="col-sm-3 col-6">
+        <div class="inner-grid__item">
+          <a class="inner-grid__item-images">
+            <img src="/assets/images/do-gia-dung-sinh-hoat.jpg" alt="">
+          </a>
+        </div>
+        <h3 class="inner-grid__item-title">
+          Home Appliances
+        </h3>
+      </div>
+      <div class="col-sm-3 col-6">
+        <div class="inner-grid__item">
+          <a class="inner-grid__item-images">
+            <img src="/assets/images/sach-van-phong-pham.jpg" alt="">
+          </a>
+        </div>
+        <h3 class="inner-grid__item-title">
+          Books
+        </h3>
+      </div>
+      <div class="col-sm-3 col-6">
+        <div class="inner-grid__item">
+          <a class="inner-grid__item-images">
+            <img src="/assets/images/thoi-trang-trang-suc.jpg" alt="">
+          </a>
+        </div>
+        <h3 class="inner-grid__item-title">
+          Clothing
+        </h3>
+      </div>
+      <div class="col-sm-3 col-6">
+        <div class="inner-grid__item">
+          <a class="inner-grid__item-images">
+            <img src="/assets/images/aki1-min.jpg" alt="">
+          </a>
+        </div>
+        <h3 class="inner-grid__item-title">
+          Beauty
+        </h3>
+      </div>
+      <div class="col-sm-3 col-6">
+        <div class="inner-grid__item">
+          <a class="inner-grid__item-images">
+            <img src="/assets/images/phuong-tien-giao-thong.jpg" alt="">
+          </a>
+        </div>
+        <h3 class="inner-grid__item-title">
+          Toys
+        </h3>
+      </div>
+      <div class="col-sm-3 col-6">
+        <div class="inner-grid__item">
+          <a class="inner-grid__item-images">
+            <img src="/assets/images/thuc-pham-nha-hang.jpg" alt="">
+          </a>
+        </div>
+        <h3 class="inner-grid__item-title">
+          Heath
+        </h3>
+      </div>
+      <div class="col-sm-3 col-6">
+        <div class="inner-grid__item">
+          <a class="inner-grid__item-images">
+            <img src="/assets/images/noi-that-trang-tri.jpg" alt="">
+          </a>
+        </div>
+        <h3 class="inner-grid__item-title">
+          Furniture
+        </h3>
+      </div>
+      <div class="col-sm-3 col-6">
+        <div class="inner-grid__item">
+          <a class="inner-grid__item-images">
+            <img src="/assets/images/cong-nghe-ky-thuat-so.jpg" alt="">
+          </a>
+        </div>
+        <h3 class="inner-grid__item-title">
+          Electronics
+        </h3>
+      </div>
+      <div class="col-sm-3 col-6">
+        <div class="inner-grid__item">
+          <a class="inner-grid__item-images">
+            <img src="/assets/images/the-thao-dich-vu.jpg" alt="">
+          </a>
+        </div>
+        <h3 class="inner-grid__item-title">
+          Sports
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end section-three     -->
+<!-- section-two -->
+<div class="section-two">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="inner-head">
+          <h2 class="inner-title">
+            Thảm khách sạn,tiệc cưới
+          </h2>
+
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="home-tab" data-toggle="tab" data-target="#home"
+                      type="button" role="tab" aria-controls="home" aria-selected="true">Sản phẩm
+                mới</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="profile-tab" data-toggle="tab" data-target="#profile"
+                      type="button" role="tab" aria-controls="profile" aria-selected="false">Sản phẩm nổi
+                bật</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="contact-tab" data-toggle="tab" data-target="#contact"
+                      type="button" role="tab" aria-controls="contact" aria-selected="false">Khuyến
+                mãi</button>
+            </li>
+          </ul>
+        </div>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <h3>Sản phẩm mới</h3>
+            <div class="row">
+              <div class="col-xl-20 col-lg-3 col-sm-6 col-md-6">
+                <div class="box">
+                  <div class="inner-images">
+                    <img src="/assets/images/dell-xps-15-9530-1.jpg" slt="anh1">
+                  </div>
+                  <div class="inner-content">
+                    <p class="inner-desc">
+                      Thảm khách sạn tiệc cưới
+                    </p>
+                    <h2 class="inner-title">
+                      Thảm khách sạn hoa văn
+                    </h2>
+                    <div class="inner-sale">
+                      300,000 đ
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-20 col-lg-3 col-sm-6 col-md-6">
+                <div class="box">
+                  <div class="inner-images">
+                    <img src="/assets/images/dell-xps-15-9530-1.jpg" slt="anh1">
+                  </div>
+                  <div class="inner-content">
+                    <p class="inner-desc">
+                      Thảm khách sạn tiệc cưới
+                    </p>
+                    <h2 class="inner-title">
+                      Thảm khách sạn hoa văn
+                    </h2>
+                    <div class="inner-sale">
+                      300,000 đ
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-20 col-lg-3 col-sm-6 col-md-6 ">
+                <div class="box">
+                  <div class="inner-images">
+                    <img src="/assets/images/dell-xps-15-9530-1.jpg" slt="anh1">
+                  </div>
+                  <div class="inner-content">
+                    <p class="inner-desc">
+                      Thảm khách sạn tiệc cưới
+                    </p>
+                    <h2 class="inner-title">
+                      Thảm khách sạn hoa văn
+                    </h2>
+                    <div class="inner-sale">
+                      300,000 đ
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-20 col-lg-3 col-sm-6 col-md-6">
+                <div class="box">
+                  <div class="inner-images">
+                    <img src="/assets/images/dell-xps-15-9530-1.jpg" slt="anh1">
+                  </div>
+                  <div class="inner-content">
+                    <p class="inner-desc">
+                      Thảm khách sạn tiệc cưới
+                    </p>
+                    <h2 class="inner-title">
+                      Thảm khách sạn hoa văn
+                    </h2>
+                    <div class="inner-sale">
+                      300,000 đ
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-20 col-lg-3 col-sm-6 col-md-6">
+                <div class="box">
+                  <div class="inner-images">
+                    <img src="/assets/images/dell-xps-15-9530-1.jpg" slt="anh1">
+                  </div>
+                  <div class="inner-content">
+                    <p class="inner-desc">
+                      Thảm khách sạn tiệc cưới
+                    </p>
+                    <h2 class="inner-title">
+                      Thảm khách sạn hoa văn
+                    </h2>
+                    <div class="inner-sale">
+                      300,000 đ
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <h3>Sản phẩm nổi bật</h3>
+          </div>
+          <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            <h3>Khuyến mãi</h3>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+
+</div>
+<script th:src="@{https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js}"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+</script>
+<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js}"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
+</script>
+
+<!-- js phần dropdown cho sp -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var dropdown = document.querySelector('.header .inner-menu .dropdown');
+
+    dropdown.addEventListener('mouseover', function () {
+      this.querySelector('.dropdown-content').style.display = 'block';
+    });
+
+    dropdown.addEventListener('mouseout', function () {
+      this.querySelector('.dropdown-content').style.display = 'none';
+    });
+
+    dropdown.addEventListener('click', function () {
+      var dropdownContent = this.querySelector('.dropdown-content');
+      if (dropdownContent.style.display === 'block') {
+        dropdownContent.style.display = 'none';
+      } else {
+        dropdownContent.style.display = 'block';
+      }
+    });
+  });
+</script>
+</body>
+
+</html>
