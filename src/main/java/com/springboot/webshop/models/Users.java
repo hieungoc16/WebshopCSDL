@@ -1,46 +1,52 @@
 package com.springboot.webshop.models;
 
 import jakarta.persistence.*;
+
 import java.util.Date;
 import java.util.Set;
-
 @Entity
 @Table(name = "users")
-public class User {
-
+public class Users {
     @Id
+    @Column(name = "users_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
     private Integer id;
-
-    @Column(name = "username")
+    @Column(name = "users_username")
     private String username;
-
-    @Column(name = "password")
-    private String password;
-
-    @Column(name = "enabled")
-    private Boolean enabled;
-
-    @Column(name = "name")
+    @Column(name = "users_password")
+    private String passWord;
+    @Column(name = "users_kind")
+    private Boolean kind;
+    @Column(name = "users_name")
     private String name;
-
-    @Column(name = "dob")
+    @Column(name = "users_dob")
     private Date dob;
-
-    @Column(name = "address")
+    @Column(name = "users_address")
     private String address;
-
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "phone")
+    @Column(name = "users_mail")
+    private String mail;
+    @Column(name = "users_phone")
     private String phone;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private Set<UserRole> userRoles;
+    public Users() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-    // Getters and setters
+    public Users(Integer id, String username, String passWord, Boolean kind, String name, Date dob, String address, String mail, String phone, Set<UserRole> userRoles) {
+        this.id = id;
+        this.username = username;
+        this.passWord = passWord;
+        this.kind = kind;
+        this.name = name;
+        this.dob = dob;
+        this.address = address;
+        this.mail = mail;
+        this.phone = phone;
+        this.userRoles = userRoles;
+    }
 
     public Integer getId() {
         return id;
@@ -58,20 +64,20 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPassWord() {
+        return passWord;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 
-    public Boolean isEnabled() {
-        return enabled;
+    public Boolean getKind() {
+        return kind;
     }
 
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
+    public void setKind(Boolean kind) {
+        this.kind = kind;
     }
 
     public String getName() {
@@ -98,12 +104,12 @@ public class User {
         this.address = address;
     }
 
-    public String getEmail() {
-        return email;
+    public String getMail() {
+        return mail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public String getPhone() {

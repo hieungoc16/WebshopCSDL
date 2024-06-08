@@ -1,11 +1,11 @@
 package com.springboot.webshop.repositories;
 
 
-import com.springboot.webshop.models.User;
+import com.springboot.webshop.models.Users;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Integer> {
-    User findByUsername(String username);
+public interface UserRepository extends JpaRepository<Users, Integer> {
+    Users findByUsername(String username);
 
 }

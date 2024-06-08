@@ -1,6 +1,6 @@
 package com.springboot.webshop.Security;
 
-import com.springboot.webshop.models.User;
+import com.springboot.webshop.models.Users;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -8,13 +8,14 @@ import java.util.Collection;
 
 public class CustomUserDetails implements UserDetails {
 
-    private User user;
+    private Users users;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public CustomUserDetails(User user, Collection<? extends GrantedAuthority> authorities) {
-        this.user = user;
+    public CustomUserDetails(Users users, Collection<? extends GrantedAuthority> authorities) {
+        this.users = users;
         this.authorities = authorities;
     }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -23,12 +24,12 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getPassword(); // Correct method name
+        return users.getPassWord();
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return users.getUsername();
     }
 
     @Override
@@ -48,6 +49,6 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return user.isEnabled(); // Correct method name
+        return true;
     }
 }

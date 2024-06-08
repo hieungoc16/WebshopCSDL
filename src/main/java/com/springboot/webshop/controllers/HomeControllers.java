@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeControllers {
 
     @GetMapping("/")
-    public String redirectToAdmin() {
-        return "redirect:/admin";
+    public String showCustomPage() {
+        return "giaodiennguoidung/customer";
     }
 }
+

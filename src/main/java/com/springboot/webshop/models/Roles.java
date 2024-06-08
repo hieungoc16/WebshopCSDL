@@ -5,17 +5,17 @@ import java.util.Set;
 
 @Entity
 @Table(name = "roles")
-public class Role {
+public class Roles {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "role_id")
+    @Column(name = "roles_id")
     private Integer id;
 
-    @Column(name = "role_name")
+    @Column(name = "roles_name")
     private String name;
 
-    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     private Set<UserRole> userRoles;
 
     // Getters and setters

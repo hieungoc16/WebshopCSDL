@@ -5,43 +5,49 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "user_roles")
 public class UserRole {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_role_id")
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "users_id", referencedColumnName = "users_id")
+    private Users users;
+    @ManyToOne
+    @JoinColumn(name = "roles_id", referencedColumnName = "roles_id")
+    private Roles roles;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    public UserRole() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id", nullable = false)
-    private Role role;
+    public UserRole(Long id, Users user, Roles role) {
+        this.id = id;
+        this.users = user;
+        this.roles = role;
+    }
 
-    // Getters and setters
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Users getUser() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Users user) {
+        this.users = user;
     }
 
-    public Role getRole() {
-        return role;
+    public Roles getRole() {
+        return roles;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRole(Roles role) {
+        this.roles = role;
     }
 }
