@@ -9,9 +9,9 @@ public interface IProductService {
 
     List<Product> findAllProduct();
 
-    List<Product> findEnableProduct();
+    List<Product> findEnableProduct(String sortBy, String sortDir);
 
-    List<Product> findDisableProduct();
+    List<Product> findDisableProduct(String sortBy, String sortDir);
 
     Void enableProduct(Integer id);
 

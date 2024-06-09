@@ -19,13 +19,13 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<Product> findEnableProduct(){
-        return productsRepository.findStatusProduct(1);
+    public List<Product> findEnableProduct(String sortBy, String sortDir){
+        return productsRepository.findStatusProduct(1, sortBy, sortDir);
     }
 
     @Override
-    public List<Product> findDisableProduct(){
-        return productsRepository.findStatusProduct(0);
+    public List<Product> findDisableProduct(String sortBy, String sortDir){
+        return productsRepository.findStatusProduct(0, sortBy, sortDir);
     }
 
     @Override

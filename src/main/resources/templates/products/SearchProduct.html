@@ -37,10 +37,11 @@
         <option value="filter2">Filter 2</option>
       </select>
     </div>
-    <div class="input-group">
+    <form action="/admin/products/search" method="get" class="input-group">
       <img src="/images/icons/search_icon.png" alt="Search" class="icon me-2">
-      <input type="text" class="form-control" placeholder="Search..." title="Search">
-    </div>
+      <input type="text" name="name" class="form-control custom-search-input" placeholder="Search..." title="Search">
+      <button type="submit" class="btn custom-search-button">Search</button>
+    </form>
   </div>
 
   <table class="table table-bordered table-hover table-striped">

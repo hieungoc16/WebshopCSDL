@@ -23,7 +23,7 @@
         <a class="btn btn-primary" href="/admin/disableproducts">Disable Products</a>
     </div>
 
-    <h1 class="text-center my-4">Products</h1>
+    <h1 class="text-center my-4">Users</h1>
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <a href="/admin/products/create" title="Create Product" class="me-3">
@@ -64,31 +64,28 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Number</th>
-            <th>Brand</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Image</th>
-            <th>Create At</th>
-            <th>Action</th>
+            <th>Username</th>
+            <th>PassWord</th>
+            <th>Phone</th>
+            <th>Mail</th>
+            <th>Address</th>
+            <th>DoB</th>
+            <th>Role</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="product : ${products}">
-            <td th:text="${product.id}"></td>
-            <td th:text="${product.name}"></td>
-            <td th:text="${product.number}"></td>
-            <td th:text="${product.brand.brand_name}"></td>
-            <td th:text="${product.category.category_name}"></td>
-            <td th:text="@{'$' + ${product.price}}"></td>
-            <td>
-                <img th:src="@{'/images/product_images/' + ${product.imageFileName}}" alt="..." class="productShow-image"  >
-            </td>
-            <td th:text="${product.createdAt.toString().substring(0, 10)}"></td>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="password"></td>
+            <td th:text="${user.mail}"></td>
+            <td th:text="${user.phone}"></td>
+            <td th:text="${user.Address}"></td>
+            <td th:text="${user.dob}"></td>
             <td class="text-nowrap">
-                <a class="btn btn-primary btn-sm me-1" th:href="@{/admin/products/edit(id=${product.id})}">Edit</a>
-                <a class="btn btn-danger btn-sm me-1" th:href="@{/admin/products/delete(id=${product.id})}" onclick="return confirm('Are you sure?')">Delete</a>
-                <a class="btn btn-info btn-sm" th:href="@{/admin/products/detail(id=${product.id})}">Detail</a>
+                <a class="btn btn-primary btn-sm me-1" th:href="@{/admin/users}">Edit</a>
+                <a class="btn btn-info btn-sm" th:href="@{/admin/users}">Detail</a>
             </td>
         </tr>
         </tbody>

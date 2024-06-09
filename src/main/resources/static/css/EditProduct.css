@@ -27,14 +27,14 @@ h2 {
 }
 
 .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: #000000;
+    border-color: #000000;
     color: white;
     border-radius: 25px; /* Bo tròn góc */
     padding: 10px 20px; /* Tăng kích thước nút */
     font-size: 16px; /* Tăng kích thước chữ */
     transition: all 0.3s ease; /* Thêm hiệu ứng chuyển động */
-    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2); /* Thêm đổ bóng */
+    box-shadow: 0 4px 6px rgba(81, 83, 83, 0.2); /* Thêm đổ bóng */
 }
 
 .btn-outline-secondary {
@@ -54,8 +54,10 @@ h2 {
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-    box-shadow: 0 6px 8px rgba(0, 123, 255, 0.4); /* Thay đổi đổ bóng khi hover */
+    background-color: #444545;
+    border-color: #4e4e4e;
+    box-shadow: 0 6px 8px rgba(109, 111, 113, 0.4); /* Thay đổi đổ bóng khi hover */
     transform: translateY(-2px); /* Thêm hiệu ứng nhấp nháy */
 }
+
+

@@ -12,8 +12,17 @@ import java.util.List;
 
 @Repository
 public interface ProductsRepository extends JpaRepository<Product, Integer> {
-    @Query("SELECT product FROM Product product WHERE (product.status = ?1)" + "ORDER BY product.id ASC")
-    public List<Product> findStatusProduct(Integer product_status);
+    @Query("SELECT product FROM Product product WHERE (product.status = :status)" +
+            "ORDER BY " +
+            "CASE WHEN :sortBy = 'price' AND :sortDir = 'asc' THEN product.price END ASC, " +
+            "CASE WHEN :sortBy = 'price' AND :sortDir = 'desc' THEN product.price END DESC, " +
+            "CASE WHEN :sortBy = 'name' AND :sortDir = 'asc' THEN product.name END ASC, " +
+            "CASE WHEN :sortBy = 'name' AND :sortDir = 'desc' THEN product.name END DESC, " +
+            "CASE WHEN :sortBy = 'id' AND :sortDir = 'asc' THEN product.id END ASC, " +
+            "CASE WHEN :sortBy = 'id' AND :sortDir = 'desc' THEN product.id END DESC")
+    public List<Product> findStatusProduct(@Param("status") Integer product_status,
+                                           @Param("sortBy") String sortBy,
+                                           @Param("sortDir") String sortDir);
 
     @Transactional
     @Modifying

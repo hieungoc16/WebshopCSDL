@@ -24,7 +24,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin/products")
-public class ProductsController {
+public class AdminProductsController {
 
     @Autowired
     private ProductsRepository repo;
@@ -92,7 +92,7 @@ public class ProductsController {
         product.setImageFileName(storedFileName);
         repo.save(product);
 
-        return "redirect:/products";
+        return "redirect:/admin/products";
     }
 
     @GetMapping("/edit")
@@ -110,9 +110,9 @@ public class ProductsController {
         }
         catch (Exception ex){
             System.out.println("Exception: " + ex.getMessage());
-            return "redirect:/products";
+            return "redirect:/admin/products";
         }
-        return "products/EditProduct";
+        return "/products/EditProduct";
     }
 
     @PostMapping("/edit")
@@ -168,7 +168,7 @@ public class ProductsController {
         catch (Exception ex){
             System.out.println("Exception: " + ex.getMessage());
         }
-        return "redirect:/products";
+        return "redirect:/admin/products";
     }
 
     @GetMapping("/delete")
@@ -181,7 +181,7 @@ public class ProductsController {
         catch (Exception ex){
             System.out.println("Exception: " + ex.getMessage());
         }
-        return "redirect:/products";
+        return "redirect:/admin/products";
     }
 
 
@@ -199,7 +199,7 @@ public class ProductsController {
         }
         catch (Exception ex){
             System.out.println("Exception: " + ex.getMessage());
-            return "redirect:/products";
+            return "redirect:/admin/products";
         }
         return "products/ProductDetail";
     }
@@ -214,7 +214,7 @@ public class ProductsController {
             model.addAttribute("products", products);
      } catch (Exception e) {
          System.out.println("Exception: " + e.getMessage());
-         return "redirect:/products";
+         return "redirect:/admin/products";
      }
      return "products/searchProduct";
     }

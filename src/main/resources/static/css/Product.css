@@ -81,8 +81,47 @@ body, html {
 
 .productShow-image {
     width: 40px;
-    height: 60px;
-    max-width: 40px;
-    max-height: 60px;
+    height: 50px;
     border-radius: 8px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    width: 100%; /* Đảm bảo chiều rộng */
+}
+
+.custom-search-input {
+    flex: 1; /* Để input chiếm toàn bộ không gian còn lại */
+    padding: 5px 10px; /* Điều chỉnh khoảng cách bên trong input */
+    font-size: 14px; /* Kích thước chữ trong input */
+    border: 1px solid #ccc; /* Viền của input */
+    border-radius: 4px 0 0 4px; /* Bo tròn các góc của input */
+    margin: 0; /* Loại bỏ margin nếu có */
+    box-sizing: border-box; /* Đảm bảo padding và border không ảnh hưởng đến kích thước */
+}
+
+.custom-search-button {
+    background-color: #000; /* Màu đen */
+    color: #fff; /* Màu trắng cho chữ */
+    border: 1px solid #000; /* Viền của nút để khớp với input */
+    padding: 5px 15px; /* Khoảng cách bên trong của nút, nhỏ hơn để khớp với input */
+    font-size: 14px; /* Kích thước chữ */
+    cursor: pointer; /* Con trỏ chuột */
+    border-radius: 0 4px 4px 0; /* Bo tròn các góc của nút */
+    transition: background-color 0.3s ease; /* Hiệu ứng chuyển màu nền */
+    height: 100%; /* Đảm bảo chiều cao của nút khớp với input */
+}
+
+.custom-search-button:hover {
+    background-color: #333; /* Màu nền khi hover */
+}
+
+.form-select {
+    width: auto; /* Điều chỉnh chiều rộng của các select */
+    min-width: 150px; /* Chiều rộng tối thiểu của select */
+}
+
+.input-group .form-select {
+    margin-right: 10px; /* Khoảng cách giữa các select */
 }
