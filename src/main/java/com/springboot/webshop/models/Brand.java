@@ -1,18 +1,14 @@
 package com.springboot.webshop.models;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.*;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.Size;
+import jakarta.persistence.*;
+
 @Entity
 @Table(name = "brand")
 public class Brand {
     @Id
     @Column(name = "brand_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int brand_id;
 
     @Column(name = "brand_name")
@@ -44,4 +40,6 @@ public class Brand {
     public void setBrand_address(String brand_address) {
         this.brand_address = brand_address;
     }
+
+
 }

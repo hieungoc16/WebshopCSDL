@@ -8,6 +8,7 @@ public class Feedback {
 
     @Column(name = "feedback_id")
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int feedback_id;
 
     @Column(name = "feedback_date")
@@ -22,7 +23,7 @@ public class Feedback {
 
     @ManyToOne
     @JoinColumn(name = "users_id", referencedColumnName = "users_id")
-    private Users users_id;
+    private Users users;
 
     public int getFeedback_id() {
         return feedback_id;
@@ -57,10 +58,10 @@ public class Feedback {
     }
 
     public Users getUsers_id() {
-        return users_id;
+        return users;
     }
 
     public void setUsers_id(Users users_id) {
-        this.users_id = users_id;
+        this.users = users_id;
     }
 }

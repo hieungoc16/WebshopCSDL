@@ -80,7 +80,7 @@
             <div id="feedbackContainer">
               <ul id="feedbackList" class="list-group">
                 <li th:each="feedback : ${feedbackList}" class="list-group-item feedback-item">
-                  <p class="feedback-author" th:text="${feedback.users_id.name}">Author</p>
+                  <p class="feedback-author" th:text="${feedback.users.name}">Author</p>
                   <p class="feedback-date" th:text="${feedback.feedback_date}">Date</p>
                   <p class="feedback-comment" th:text="${feedback.feedback_note}">Comment</p>
                 </li>

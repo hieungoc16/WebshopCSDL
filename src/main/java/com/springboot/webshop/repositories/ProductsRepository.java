@@ -32,6 +32,9 @@ public interface ProductsRepository extends JpaRepository<Product, Integer> {
 
     @Query("SELECT product FROM Product product WHERE (product.name LIKE %:name%)" + "ORDER BY product.id ASC")
     public List<Product> findByName(@Param("name") String name);
+
+    @Query("SELECT p FROM Product p WHERE p.status = ?1 ORDER BY p.id DESC LIMIT 1")
+    Product findMaxId(String status);
 }
 
 

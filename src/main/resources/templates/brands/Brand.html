@@ -15,7 +15,7 @@
         <a class="btn btn-primary me-2" href="/admin/">Admin</a>
         <a class="btn btn-primary me-2" href="/admin/products">Products</a>
         <a class="btn btn-primary me-2" href="/admin/users">Users</a>
-        <a class="btn btn-primary me-2" href="/admin/brands">Brands</a>
+        <a class="btn btn-primary me-2" href="/products/disableproduct">Brands</a>
         <a class="btn btn-primary me-2" href="/products/disableproduct">Categories</a>
         <a class="btn btn-primary me-2" href="/products/disableproduct">Orders</a>
         <a class="btn btn-primary me-2" href="/products/disableproduct">Payments</a>
@@ -23,7 +23,7 @@
         <a class="btn btn-primary" href="/admin/disableproducts">Disable Products</a>
     </div>
 
-    <h1 class="text-center my-4">Users</h1>
+    <h1 class="text-center my-4">Brands</h1>
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div class="flex-grow-1 me-3">
@@ -60,28 +60,14 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Username</th>
-            <th>PassWord</th>
-            <th>Mail</th>
-            <th>Phone</th>
-            <th>Address</th>
-            <th>DoB</th>
-            <th>Role</th>
+            <th>Brand</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user : ${users}">
-            <td th:text="${user.id}"></td>
-            <td th:text="${user.name}"></td>
-            <td th:text="${user.username}"></td>
-            <td th:text="password"></td>
-            <td th:text="${user.mail}"></td>
-            <td th:text="${user.phone}"></td>
-            <td th:text="${user.Address}"></td>
-            <td th:text="${user.dob}"></td>
-            <td class="text-nowrap">
-                <a class="btn btn-info btn-sm" th:href="@{/admin/users}">Detail</a>
-            </td>
+        <tr th:each="brand : ${brands}">
+            <td th:text="${brand.brand_id}"></td>
+            <td th:text="${brand.brand_name}"></td>
+            <td th:text="${brand.brand_address}"></td>
         </tr>
         </tbody>
     </table>

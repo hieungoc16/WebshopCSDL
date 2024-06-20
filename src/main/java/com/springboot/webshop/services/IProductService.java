@@ -19,4 +19,5 @@ public interface IProductService {
 
     List<Product> findProductsByName(String name);
 
+    Integer findMaxId();
 }

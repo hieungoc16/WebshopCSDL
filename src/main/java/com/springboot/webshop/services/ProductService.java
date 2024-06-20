@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductService implements IProductService {
@@ -42,5 +41,17 @@ public class ProductService implements IProductService {
     public List<Product> findProductsByName(String name){
         return productsRepository.findByName(name);
     }
+
+    @Override
+    public Integer findMaxId() {
+        int maxIdNumber = 0;
+        List<Product> products = productsRepository.findStatusProduct(1, "id", "desc");
+        maxIdNumber = products.getFirst().getId();
+        // Tạo ID mới
+        int newIdNumber = maxIdNumber + 1;
+        return newIdNumber;
+    }
+
+
 
 }

@@ -1,7 +1,9 @@
 package com.springboot.webshop.controllers;
 
+import com.springboot.webshop.models.Brand;
 import com.springboot.webshop.models.Product;
 import com.springboot.webshop.models.Users;
+import com.springboot.webshop.services.BrandService;
 import com.springboot.webshop.services.ProductService;
 import com.springboot.webshop.services.UserService;
 import org.aspectj.apache.bcel.classfile.Module;
@@ -24,6 +26,9 @@ public class AdminController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private BrandService brandService;
 
     @GetMapping({"", "/"})
     public String showAdminPage() {
@@ -56,13 +61,24 @@ public class AdminController {
         return "disableproducts/DisableProduct";
     }
 
+
+
     @GetMapping("/users")
     public String showUserList(
             Model model
     ) {
-        List<Users> users = userService.findUsers();
+        List<Users> users = userService.findAllUsers();
         model.addAttribute("users", users);
         return "users/Users";
+    }
+
+    @GetMapping("/brands")
+    public String showBrandList(
+            Model model
+    ){
+        List<Brand> brands = brandService.getAllBrands();
+        model.addAttribute("brands", brands);
+        return "brands/Brand";
     }
 }
 

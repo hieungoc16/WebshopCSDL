@@ -82,6 +82,8 @@ public class AdminProductsController {
         Category category = this.categoriesRepository.findById(categoryId).get();
 
         Product product = new Product();
+        int maxId = productService.findMaxId();
+        product.setId(maxId);
         product.setName(name);
         product.setNumber(number);
         product.setBrand(brand);
@@ -90,6 +92,7 @@ public class AdminProductsController {
         product.setDescription(description);
         product.setCreatedAt(createdAt);
         product.setImageFileName(storedFileName);
+        product.setStatus("1");
         repo.save(product);
 
         return "redirect:/admin/products";
@@ -152,9 +155,9 @@ public class AdminProductsController {
                 product.setImageFileName(storageFileName);
                 }
 
-
             Brand brand = this.brandsRepository.findById(brandId).get();
             Category category = this.categoriesRepository.findById(categoryId).get();
+
 
             product.setName(name);
             product.setNumber(number);

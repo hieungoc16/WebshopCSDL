@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 :root{
     --color-bg1:#0773B9;
@@ -15,4 +16,19 @@
 }
 body {
     font-family: 'Inria Serif',serif;
+}
+.inner-button{
+    border: 1px solid var(--color-desc);
+    padding: 8px 20px;
+    background: yellow;
+    color: #000;
+    font-size: 16px;
+    margin-bottom: 5px;
+    border-radius: 45px;
+}
+.inner-button.one:hover{
+    background: aquamarine;
+}
+.inner-button.two:hover{
+    background: aquamarine;
 }

@@ -1,10 +1,7 @@
 package com.springboot.webshop.models;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
@@ -13,6 +10,7 @@ import jakarta.validation.constraints.Size;
 public class Category {
     @Id
     @Column(name = "category_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int category_id;
     @Column(name = "category_name")
     private String category_name;
