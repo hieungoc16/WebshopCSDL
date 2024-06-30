@@ -57,11 +57,11 @@ public class Feedback {
         this.product = product;
     }
 
-    public Users getUsers_id() {
+    public Users getUsers() {
         return users;
     }
 
-    public void setUsers_id(Users users_id) {
+    public void setUsers(Users users_id) {
         this.users = users_id;
     }
 }

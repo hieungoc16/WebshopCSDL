@@ -71,7 +71,7 @@ public class AdminProductsController {
                 Files.createDirectories(uploadPath);
             }
             try(InputStream inputStream = image.getInputStream()){
-                Files.copy(inputStream, Paths.get(uploadDir + storedFileName), StandardCopyOption.REPLACE_EXISTING);
+                Files.copy(inputStream, Paths.get(storedFileName), StandardCopyOption.REPLACE_EXISTING);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
